@@ -22,63 +22,57 @@ var losesEl = document.querySelector('#losses')
 
 var correct = 0
 var incorrect = 0
-var letters = []
-  const alpha = Array.from(Array(26)).map((e, i) => i + 65);
+
+var letters = [] //create alphabet array
+  const alpha = Array.from(Array(26)).map((e, i) => i + 97);
   const alphabet = alpha.map((x) => String.fromCharCode(x));
   console.log(alphabet);
 
+document.onkeyup = function(e) {  //create key event
+  console.log(e.key)
+}
 
-//select a word at random from the provided words array and place it in the #word-to-guess element
-//with its letters replaced as underscores.
-var randomWord = words[Math.floor(Math.random() * words.length)];
-var chosenWord = "_".repeat(randomWord.length); 
-
-var randomWordOutput = document.querySelector('#word-to-guess');
+var randomWord = words[Math.floor(Math.random() * words.length)]; //select random word from array/place in element
+console.log(randomWord)
+var chosenWord= "_".repeat(randomWord.length);
+console.log(chosenWord)
+ 
+var randomWordOutput = document.querySelector('#word-to-guess'); //add to document
 randomWordOutput.innerHTML = chosenWord
 
-//when page opens - show 10 remaining-quesses.
-var remainingGuess;
+var remainingGuess; //when page opens - show remaining-quesses
  var guessCount = 0;
  var numberOfGuesses = 11;
  remainingAttemps = numberOfGuesses--;
  console.log(numberOfGuesses) 
 
-var numberOfGuessesStart = document.querySelector('#remaining-guesses');
+var numberOfGuessesStart = document.querySelector('#remaining-guesses'); //add value to document
 numberOfGuessesStart.innerHTML = numberOfGuesses
 
-//Check letter when user presses a letter key, code should check whether the letter is included in the word.
+//search and check letter when user presses a letter key - replace letter or do nothing.
 
-document.onkeyup = function(e) {
-  //filter letters
-  var key = e.key.toLowerCase(e)
-  if (letters.indexOf(key) == chosenWord.textContent)
+function updateLetter() {
+  document.onkeyup = function(e) {  //create key event
+    console.log(e.key)
+  }
+  //var chosenWord = chosenWord.split('');//split the clue into an array
+  var chosenLet= (e.key)
+  for (let i = 0; i < chosenWord.length; i++){ //loop through the characters in thee word
+    if (chosenWord.charAt(i).toLowerCase() === chosenLet.toLowerCase()) { //if the letter matches the guess
+      chosenLet[i] = chosenWord.charAt(i);  //replace the corresponding character in the word
+     }
+    }
+    chosenWord[i] = chosenWord.join('');//convert the clue array back into a string
+    return chosenWord;
+  }
+var chosenLet= document.querySelector('#word-to-guess');
+chosenLet.innerHTML = chosenWord
+
+
+
   
-  
-  String.prototype.replaceAt = function (index, replacement) {
-    return this.substr(0, index) + replacement + this.substr(index + replacement.length);}
-    chosenWord.textContent = e.key
-  
-  console.log (e.key)
-  
- 
-
-}
-
-
-//if the letter is included, it should replace the underscore in the word-to-guess element.
-
-/*incorrect letter (or a non letter key is pressed) letter chosen then no change and the 
-incorrect-letters element should be displayed. 
-remaining-guesses element should decrease by 1 guess.*/
 
 //show previous word
 
 //calculate and show score
-
-
-
-
-
-
-
 
