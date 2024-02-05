@@ -37,42 +37,41 @@ console.log(randomWord)
 var chosenWord= "_".repeat(randomWord.length);
 console.log(chosenWord)
  
-var randomWordOutput = document.querySelector('#word-to-guess'); //add to document
-randomWordOutput.innerHTML = chosenWord
+var randomWord = document.querySelector('#word-to-guess');
+randomWord.innerHTML = chosenWord
 
 var remainingGuess; //when page opens - show remaining-quesses
  var guessCount = 0;
  var numberOfGuesses = 11;
  remainingAttemps = numberOfGuesses--;
- console.log(numberOfGuesses) 
+ console.log(numberOfGuesses)
 
-var numberOfGuessesStart = document.querySelector('#remaining-guesses'); //add value to document
-numberOfGuessesStart.innerHTML = numberOfGuesses
+var remainingGuess = document.querySelector('#remaining-guesses'); //add value to document
+remainingGuess.innerHTML = numberOfGuesses
+
+document.onkeyup = function(e) {//create key event
+  console.log(e.key) }
 
 //search and check letter when user presses a letter key - replace letter or do nothing.
 
-function updateLetter() {
-  document.onkeyup = function(e) {  //create key event
-    console.log(e.key)
-  }
-  //var chosenWord = chosenWord.split('');//split the clue into an array
-  var chosenLet= (e.key)
-  for (let i = 0; i < chosenWord.length; i++){ //loop through the characters in thee word
-    if (chosenWord.charAt(i).toLowerCase() === chosenLet.toLowerCase()) { //if the letter matches the guess
-      chosenLet[i] = chosenWord.charAt(i);  //replace the corresponding character in the word
-     }
-    }
-    chosenWord[i] = chosenWord.join('');//convert the clue array back into a string
-    return chosenWord;
-  }
-var chosenLet= document.querySelector('#word-to-guess');
-chosenLet.innerHTML = chosenWord
-
-
-
+function updateletter() {
   
+  //var chosenWord = chosenWord.split('_');//split the clue into an array
+  var chosenLet = document.onkkeyup(e.key)
+  for (var i = 0; i < chosenWord.length; i++){ //loop through the characters in thee word
+    if (chosenWord.charAt(i).toLowerCase() === chosenLet.toLowerCase()); { //if the letter matches the guess
+      chosenLet[i] = chosenWord.charAt(i).replace;  //replace the corresponding character in the word
+     }
+  
+    //chosenWord[i] = chosenWord.join('_');//convert the clue array back into a string
+    
+    
+    }
+    
+}
+console.log(chosenWord)
 
-//show previous word
+
 
 //calculate and show score
 
