@@ -9,7 +9,7 @@ var words = [
   'programming',
   'meatloaf',
   'ukulele',
-  'mango',
+  'mango'
 ];
 
 var randomWord = document.querySelector('#word-to-guess')
@@ -19,7 +19,7 @@ var remainingGuess = document.querySelector('#remaining-guesses')
 var scoreEl = document.querySelector('score')
 var winsEl = document.querySelector('#wins')
 var losesEl = document.querySelector('#losses')
-var i;
+
 
 var correct = 0
 var incorrect = 0
@@ -27,72 +27,64 @@ var incorrect = 0
 var letters = [] //create alphabet array
   const alpha = Array.from(Array(26)).map((e, i) => i + 97);
   const alphabet = alpha.map((x) => String.fromCharCode(x));
-  console.log(alphabet);
-
-/*document.onkeyup = function(e) {  //create key event
-  console.log(e.key)
-}*/
+  //console.log(alphabet);
 
 var randomWord = words[Math.floor(Math.random() * words.length)]; //select random word from array/place in element
 console.log(randomWord)
-//var chosenWord = "_".repeat(randomWord.length);
-var chosenWord = randomWord.replace(/./gi,"_");
+var chosenWord = randomWord.replace(/./gi,"_");//replace letters with underscore
 console.log(chosenWord)
  
-var  wordBlanks= document.querySelector('#word-to-guess');
-console.log(randomWord,'changes')
+var  wordBlanks= document.querySelector('#word-to-guess');//add the random word as underscore to page
+//console.log(randomWord,'call id')
 wordBlanks.innerHTML = chosenWord
-console.log(randomWord, 'changesPlus')
+//console.log(randomWord, 'add to page')
 
 var remainingGuess; //when page opens - show remaining-quesses
-console.log('afterremainingguess')
+//console.log('afterremainingguess')
  var guessCount = 0;
  var numberOfGuesses = 10;
  remainingAttemps = numberOfGuesses--;
- console.log(remainingAttemps,'remainingattemps')
+ console.log(remainingAttemps,'remaining attemps')
 
-var remainingGuess = document.querySelector('#remaining-guesses'); //add value to document
+var remainingGuess = document.querySelector('#remaining-guesses'); //call and add value to page
 remainingGuess.innerHTML = remainingAttemps
 
-//document.onkeyup = function(e) {//create key event
-  //console.log(e.key) }
-
-//search and check letter when user presses a letter key - replace letter or do nothing.
+//search and check letter when user presses a letter key.
 
 document.onkeyup = function(e) { //create key event
   console.log(e.key ,'afterfuntion')
+
   var key = e.key.toLowerCase()
   console.log(e.key ,'enteredLet')
-  //if (letters.indexOf(key) == -1) return
-  console.log(e.key,'keyandlettersafterindexof')
- // var letter = letters[Math.floor.random() * (26)]
-  //console.log(key, letter)
-
 
   console.log('almostinforloop')
-  for (var i = 0; i < randomWord.length; i++) {//loop through the characters in thee word
+  for (var i = 0; i < randomWord.length; i++) {//loop through the characters in the word
     console.log(key,i, randomWord.charAt(i),'beginforloop')
 
-    if (randomWord.charAt(i).toLowerCase() === key.toLowerCase()){
+    if (randomWord.charAt(i).toLowerCase() === key.toLowerCase()){ //if a match
       chosenWord.charAt(i) == key
-      chosenWord = setCharAt(chosenWord,i,key)
+      chosenWord = setCharAt(chosenWord,i,key)// call function setCharAt
+      
 
     console.log(chosenWord,'infifloop', [i]);
   }
   console.log('inforloop')
   
 }
-function setCharAt(str,index,chr) {
+
+function setCharAt(str,index,chr) { //function to replace character in word
   if(index > str.length-1) return str;
   return str.substr(0,index) + chr + str.substr(index+1);
+
+  chosenWord = randomWord.replace("_",/./gi,);  //replace the corresponding character in the word
+  console.log('replaceLetter')
 }
-
-console.log('outofforloop')
-
-  //if the letter matches the guess
-    chosenWord = randomWord.replace("_",/./gi,);  //replace the corresponding character in the word
-    console.log('replaceLetter')
+var  wordBlanks= document.querySelector('#word-to-guess');
+console.log(randomWord,'changes')
+wordBlanks.innerHTML = chosenWord
+console.log(randomWord, 'changesPlus')
+  console.log('outofforloop')
+  
 }     
- 
-    
+  
 //calculate and show score
