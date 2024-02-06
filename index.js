@@ -19,6 +19,7 @@ var remainingGuess = document.querySelector('#remaining-guesses')
 var scoreEl = document.querySelector('score')
 var winsEl = document.querySelector('#wins')
 var losesEl = document.querySelector('#losses')
+var i;
 
 var correct = 0
 var incorrect = 0
@@ -34,16 +35,14 @@ var letters = [] //create alphabet array
 
 var randomWord = words[Math.floor(Math.random() * words.length)]; //select random word from array/place in element
 console.log(randomWord)
-var chosenWord = "_".repeat(randomWord.length);
+//var chosenWord = "_".repeat(randomWord.length);
+var chosenWord = randomWord.replace(/./gi,"_");
 console.log(chosenWord)
  
 var  wordBlanks= document.querySelector('#word-to-guess');
 console.log(randomWord,'changes')
 wordBlanks.innerHTML = chosenWord
 console.log(randomWord, 'changesPlus')
-
-
-
 
 var remainingGuess; //when page opens - show remaining-quesses
 console.log('afterremainingguess')
@@ -76,19 +75,24 @@ document.onkeyup = function(e) { //create key event
 
     if (randomWord.charAt(i).toLowerCase() === key.toLowerCase()){
       chosenWord.charAt(i) == key
+      chosenWord = setCharAt(chosenWord,i,key)
+
     console.log(chosenWord,'infifloop', [i]);
   }
   console.log('inforloop')
-}
-console.log('outofforloop')
-    /*if the letter matches the guess
-    chosenLet = chosenWord.charAt(i).replace('_');  //replace the corresponding character in the word
-  console.log('replaceLetter')*/
-
-}     
-   
   
-  //chosenWord[i] = chosenWord.join('_');//convert the clue array back into a string
+}
+function setCharAt(str,index,chr) {
+  if(index > str.length-1) return str;
+  return str.substr(0,index) + chr + str.substr(index+1);
+}
+
+console.log('outofforloop')
+
+  //if the letter matches the guess
+    chosenWord = randomWord.replace("_",/./gi,);  //replace the corresponding character in the word
+    console.log('replaceLetter')
+}     
  
     
 //calculate and show score
